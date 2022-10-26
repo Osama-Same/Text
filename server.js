@@ -2,22 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app = express();
-//const router = require("./Router/router");
 const bodyParser = require("body-parser");
-const connection = require("./connection/connection");
+const sqlserver = require("./connection/connection");
 require("dotenv").config();
+
 const corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-
-//app.use(router);
+app.use(bodyParser.json());
 
 app.get("/users", (req, res) => {
-  let sql = `select * from users`;
-  connection.query(sql, (err, result) => {
+  const sql = `select * from users`;
+  sqlserver.query(sql, (err, result) => {
     if (err) {
       res.json(err);
     } else {
@@ -26,7 +25,6 @@ app.get("/users", (req, res) => {
   });
 });
 
-//app.use(express.static(path.resolve(__dirname, "client/build")));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

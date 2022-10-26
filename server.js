@@ -6,7 +6,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./connection/connection");
 require("dotenv").config();
-const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200,
@@ -28,7 +27,7 @@ app.get("/users", (req, res) => {
 });
 
 //app.use(express.static(path.resolve(__dirname, "client/build")));
-
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

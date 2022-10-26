@@ -12,7 +12,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-//app.use(bodyParser.json())
+
 //app.use(router);
 
 app.get("/users", (req, res) => {

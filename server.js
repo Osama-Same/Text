@@ -14,15 +14,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.get("/users", (req, res) => {
-  const sql = `select * from users`;
-  sqlserver.query(sql, (err, result) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(result);
-    }
-  });
+app.get("/", (req, res) => {
+  res.send("osma")
 });
 
 const PORT = process.env.PORT || 5000;

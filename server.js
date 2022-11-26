@@ -15,7 +15,14 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("osma")
+  const sql = `select * from users`;
+  sqlserver.query(sql, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 5000;
